@@ -1,0 +1,32 @@
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+
+<!--<img src="img/images.png" alt="Smiley face" width="42" height="42">-->
+<table border>
+  <tr>
+      <th>id</th>
+      <th>date</th>
+      <th>time</th>
+      <th>type_servis</th>
+      <th>master</th>
+      <th>firstname</th>
+      <th>number</th>
+  </tr>
+    {% for user in users %}
+        <tr>
+            <th>{{ user.id }}</th>
+            <th>{{ user.date }}</th>
+            <th>{{ user.time }}</th>
+            <th>{{ user.type_servis }}</th>
+            <th>{{ user.master }}</th>
+            <th>{{ user.firstname }}</th>
+            <th>{{ user.number }}</th>
+            <th><a href='http://localhost:5000/user/{{ user.id }}/contact'>contacts</a></th>
+            <th><a href='http://localhost:5000/user/{{ user.id }}/info'>info</a></th>
+            <th><a href='http://localhost:5000/user/{{ user.id }}'>edit</a></th>
+            <th><a href='http://localhost:5000/user/{{ user.id }}/delete'>delete</a></th>
+        </tr>
+    {% endfor %}
+</table>

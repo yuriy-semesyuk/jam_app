@@ -1,0 +1,59 @@
+{% from "_formhelpers.html" import render_field %}
+
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+<dd><a href='http://localhost:5000/master'>master</a></dd>
+
+<form method=post>
+    <dt><label for="date_cal">Date</label></dt>
+    <input type="date" name="date_cal" id=date_cal value="date_cal">
+    <script>
+        document.getElementById('date_cal').value = new Date().toISOString().substring(0, 10);
+    </script>
+
+    <dt><label for="master">Master</label></dt>
+    <select name="master" id="master">
+        {% for master in masters %}
+            <option>{{ master.master_name }}</option>
+        {%endfor %}
+    </select>
+        <p><input type="submit" value="Register">
+</form>
+
+<table align="left">
+  <tr>
+      <th>Час</th>
+      <th>Послуги</th>
+  </tr>
+    {% for time_l in time_list %}
+        {% if time_l in user_time %}
+            {% for user in users %}
+                {% if user.time == time_l %}
+                    {% for time in service_time(user.time, for_type_service(user.type_servis)) %}
+                        {% for i in time: %}
+                            {% if time[0] == i %}
+                                <tr>
+                                    <th bgcolor="red" >{{ i }}</th>
+                                    <th bgcolor="red">{{ get_by_price_id(for_type_service(user.type_servis)[service_time(user.time, for_type_service(user.type_servis)).index(time)]).servis_name }}</th>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <th bgcolor="orange" onresize="1" >{{ i }}</th>
+                                    <th bgcolor="yellow"></th>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            {% if time_l in time_work and time_l not in list_rer %}
+                <tr>
+                    <th><a href='http://localhost:5000/user/add/{{ date_e }}/{{ time_l }}/{{ master_e }}'>{{ time_l }}</a></th>
+                </tr>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</table>

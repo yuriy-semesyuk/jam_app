@@ -1,0 +1,25 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+<dd><a href='http://localhost:5000/master'>master</a></dd>
+
+<table border>
+    <tr>
+      <th>Price</th>
+    </tr>
+    {% for price in prices %}
+        {% if price.master_name == master_name %}
+            <tr>
+                <th>{{ price.price_id }}</th>
+                <th>{{ price.master_name }}</th>
+                <th>{{ price.servis_name }}</th>
+                <th>{{ price.servis_cost }}</th>
+                <th>{{ price.servis_duration }}</th>
+                <th><a href='http://localhost:5000/master/master_add/{{ price.price_id }}/price/delete'>delete</a></th>
+                <th><a href='http://localhost:5000/master/master_add/{{ price.price_id }}/prise/edit'>edit</a></th>
+            </tr>
+        {%endif%}
+    {% endfor %}
+</table>

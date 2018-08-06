@@ -1,0 +1,30 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+
+<form method=post>
+
+    <dt>{{ date_e }}</dt>
+
+
+    <dt>{{ time_l }}</dt>
+
+
+    <dt>{{ list_servis }}</dt>
+
+
+    <dt>{{ master_e }}</dt>
+
+
+    <dt>{{ render_field(form.firstname) }}</dt>
+
+    <dt><label for="number">Number</label></dt>
+  <dd><input id="number" name="number" type="tel" value="+380">
+
+
+
+  </dd>
+    <p><input type=submit value=Register>
+</form>

@@ -1,0 +1,11 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+<dd><a href='http://localhost:5000/master'>master</a></dd>
+
+<form method="post">
+    {{ render_field(form.master_name) }}
+    <p><input type=submit value=Register>
+</form>

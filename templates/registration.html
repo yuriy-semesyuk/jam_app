@@ -1,0 +1,38 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+
+
+<body>
+<form method='post'>
+
+     <dt>{{ date_e }}</dt>
+
+
+    <dt>{{ time_l }}</dt>
+
+
+    <dt>{{ master_e }}</dt>
+
+    {% for i in ["type_s_1", "type_s_2", "type_s_3", "type_s_4", "type_s_5"]%}
+    <dt><label for="{{ i }}">Послуга</label></dt>
+    <select name="{{ i }}" id="{{ i }}">
+        <option selected></option>
+        {% for price in prices %}
+            {% if master_e == price.master_name %}
+                <option value="{{ price.price_id }}">{{ price.servis_name }}</option>
+            {% endif %}
+        {%endfor %}
+    </select>
+    {% endfor %}
+
+    <dt>{{ render_field(form_for_servis.firstname) }}</dt>
+
+    <dt><label for="number">Number</label></dt>
+    <dd><input id="number" name="number" type="tel" value="+380">
+
+    <dt><p><input type=submit value=Register></dt>
+</form>
+</body>

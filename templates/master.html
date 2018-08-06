@@ -1,0 +1,21 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+<dd><a href='http://localhost:5000/master'>master</a></dd>
+
+<table border>
+    <tr>
+      <th>master_name</th>
+    </tr>
+    {% for master in masters %}
+        <tr>
+            <th>{{ master.master_name }}</th>
+            <th><a href='http://localhost:5000/master/master_add/{{ master.master_name }}/delete'>delete</a></th>
+            <th><a href='http://localhost:5000/master/master_add/{{ master.master_name }}'>price_add</a></th>
+            <th><a href='http://localhost:5000/master/master_add/{{ master.master_name }}/price'>price</a></th>
+        </tr>
+    {% endfor %}
+    <dd><a href='http://localhost:5000/master/master_add'>master_add</a></dd>
+</table>

@@ -1,0 +1,49 @@
+{% from "_formhelpers.html" import render_field %}
+<dd><a href='http://localhost:5000/user/add'>add user</a>
+<dd><a href='http://localhost:5000/user'>User list</a>
+<dd><a href='http://localhost:5000/calendar'>Calendar</a>
+<dd><a href='http://localhost:5000/cal'>Cal</a></dd>
+<dd><a href='http://localhost:5000/master'>master</a></dd>
+
+<form method=post>
+    <dt><label for="date_cal">Date</label></dt>
+    <input type="date" name="date_cal" id=date_cal value="date_cal">
+    <script>
+        document.getElementById('date_cal').value = new Date().toISOString().substring(0, 10);
+    </script>
+
+    <dt><label for="master">Master</label></dt>
+    <select name="master" id="master">
+        {% for master in masters %}
+            <option>{{ master.master_name }}</option>
+        {%endfor %}
+    </select>
+        <p><input type="submit" value="Register">
+</form>
+
+<table border>
+  <tr>
+      <th>Час</th>
+      <th>Послуги</th>
+      <th>Інфомація</th>
+  </tr>
+    {% for time_l in time_list %}
+        {% if time_l in users_time %}
+            {% for user in users %}
+                {% if user.time == time_l %}
+                    <tr>
+                        <th bgcolor="orange" >{{ user.time }}</th>
+                        <th bgcolor="yellow">{{ user.type_servis }}</th>
+                        <th><a href='http://localhost:5000/user/{{ user.id }}/delete'>delete</a></th>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+        {% if time_l in time_work %}
+            <tr>
+                <th><a href='http://localhost:5000/user/add/{{ date_e }}/{{ time_l }}/{{ master_e }}'>{{ time_l }}</a></th>
+            </tr>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+</table>
